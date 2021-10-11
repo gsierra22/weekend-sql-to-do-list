@@ -18,17 +18,17 @@ function getTask(){
             if( !response[i].task_completed){
             let appendTask= `<tr>
             <td style="border: 3px solid">${ response[i].tasks }</td>
-            <td style="border: 3px solid">${ response[i].task_completed }</td>
+            <td style="border: 3px solid">No</td>
             <td style="border: 3px solid"><input type="button" class="btn btn-primary deleteButton" value="Delete" data-id="${response[i].id}"></td>
             <td style="border: 3px solid"><input type="button" class="updateButton" value="Task Completed" data-id="${response[i].id}"></td>
-            <td style="border: 3px solid">Please Complete Task!</td>
+            <td style="border: 3px solid; background-color: yellow">Please Complete Task!</td>
             </tr>`;
             el.append(appendTask)
         }
         else{
             el.append(`<tr>
             <td style="border: 3px solid">${ response[i].tasks }</td>
-            <td style="border: 3px solid">${ response[i].task_completed }</td>
+            <td style="border: 3px solid">Yes</td>
             <td style="border: 3px solid"><input type="button" class="btn btn-primary deleteButton" value="Delete" data-id="${response[i].id}"></td>
             </tr>`
             );
