@@ -2,6 +2,7 @@ $(document).ready(onReady);
 
 function onReady(){
     $('#enterTaskButton').on('click', sendTask)
+    $('#outputTasks').on('click', '.deleteButton', deleteTask);
 }
 
 
@@ -13,7 +14,7 @@ function getTask(){
         let el= $('#outputTasks')
         el.empty()
         for(let i=0; i<response.length;i++){
-            let appendTask= `<li>${ response[i].tasks }: ${ response[i].task_completed }</li>`;
+            let appendTask= `<li>${ response[i].tasks }: ${ response[i].task_completed }<input type="button" class="btn btn-primary deleteButton" value="Delete" data-id="${response[i].id}"></li>`;
             el.append(appendTask)
         }
     }).catch(function(err){
@@ -38,5 +39,18 @@ function sendTask(){
     }).catch(function(err){
         alert('Issue posting tasks')
         console.log(err)
+    })
+}
+function deleteTask(){
+    console.log('in deleteTask:', $(this).data('id'));
+    $.ajax({
+        method: 'DELETE',
+        url: '/list?id=' + $( this ).data( 'id' ),
+    }).then (function(response){
+        console.log('back from delete:', response);
+        getTask()
+    }).catch(function(err){
+        console.log(err);
+        alert('could not delete task');
     })
 }

@@ -36,3 +36,13 @@ app.post ('/list', (req, res)=>{
         res.sendStatus(500);
     })
 })
+
+app.delete ('/list', (req, res)=>{
+    let queryString= `DELETE FROM "list" where id=${ req.query.id };`
+    pool.query(queryString).then((results)=>{
+        res.sendStatus(200);
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
