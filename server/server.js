@@ -46,3 +46,14 @@ app.delete ('/list', (req, res)=>{
         res.sendStatus(500);
     })
 })
+
+app.put( '/list', (req, res)=>{
+    console.log( '/list PUT:', req.query );
+    let queryString = `UPDATE "list" SET task_completed=NOT task_completed WHERE id=${ req.query.id };`
+    pool.query( queryString ).then( ( results )=>{
+        res.sendStatus( 200 );
+    }).catch( (err)=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})

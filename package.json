@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/gsierra22/weekend-sql-to-do-list#readme",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "express": "^4.17.1",
     "pg": "^8.7.1"
   }
