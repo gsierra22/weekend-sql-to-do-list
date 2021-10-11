@@ -85,7 +85,7 @@ function updateTask() {
       method: 'PUT',
       url: `/list?id=` + taskChange
     }).then(function (response) {
-      getTask;
+      getTask();
     }).catch(function (err) {
       console.log(err);
       alert('Could not update task');
