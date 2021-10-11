@@ -24,3 +24,15 @@ app.get('/list',(req,res)=>{
         res.sendStatus(500);
     })
 })
+
+app.post ('/list', (req, res)=>{
+    console.log('/list POST hit', req.body);
+    let queryString= `INSERT INTO "list" (tasks, task_completed) VALUES ($1, $2);`
+    let values =  [req.body.tasks, req.body.task_completed];
+    pool.query(queryString, values) .then((results)=>{
+        res.sendStatus(201) 
+    }).catch((err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
